@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>DocumentInserisci</title>
+</head>
+<body>
+    <div class="container">
+        <div class="api-section">
+            <label for ="nome">Nome ricetta: </label><input type="text" id="nome" placeholder="Inserici il nome della ricetta" maxlength="45">
+            <label for="portata">Portata: </label>
+            <select id="portata" name="portata">
+                <option value="PRIMO PIATTO">Primo Piatto</option>
+                <option value="SECONDO PIATTO">Secondo Piatto</option>
+                <option value="PIATTO UNICO">Piatto Unico</option>
+                <option value="CONTORNO">Contorno</option>
+                <option value="DOLCE">Dolce</option>
+                <option value="ANTIPASTO">Antipasto</option>
+            </select>
+            <div class="labelimg">
+                <label for ="immagine">Inserisci ingrediente</label>
+                <img src="img/plus.png" alt="Aggiungi ingrediente" width="20" onclick="AggiungiIngrediente()" style="cursor:pointer;" title="Aggiungi un nuovo ingrediente" id="immagine">
+            </div>
+            <div id="contenitore-ingredienti"></div>
+            <button id="invio" class="btn1" onclick="InserisciRicetta()">Inserisci Ricetta</button>
+        </div>
+        <a href="index.html"><button class = "btnhome">Torna alla homepage</button></a>
+    </div>
+    <script src="js/script.js"></script>
+</body>
+</html>

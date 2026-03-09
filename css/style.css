@@ -1,0 +1,117 @@
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    font-family: Arial, sans-serif;
+    background-attachment: fixed;
+}
+
+.container {
+    background: white;
+    padding: 5vw;       /* invece di 40px */
+    border-radius: 5vw;  /* invece di 20px */
+    box-shadow: 0 2vw 5vw rgba(0,0,0,0.2);
+    text-align: center;
+    overflow: hidden;
+    max-width: 90%;      /* non uscire dal viewport */
+}
+
+.resultLettura {
+  max-height: 500px;
+  overflow-y: auto; /* qui avviene lo scroll */
+}
+
+h1 {
+    margin-bottom: 30px;
+    color: #252020;
+}
+
+.button-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 2vw;
+    justify-content: center;
+}
+
+button {
+	padding: 15px 20px;
+	border: none;
+	border-radius: 12px;
+	font-size: 16px;
+	cursor: pointer;
+	color: white;
+	font-weight: bold;
+
+	/* Effetto profondità */
+	box-shadow: 
+		0 6px 0 rgba(0,0,0,0.25),   /* bordo inferiore (spessore) */
+		0 10px 20px rgba(0,0,0,0.2); /* ombra esterna */
+
+	transition: all 0.15s ease;
+}
+
+/* Hover: si solleva */
+button:hover {
+	transform: translateY(-2px);
+	box-shadow: 
+		0 8px 0 rgba(0,0,0,0.25),
+		0 14px 25px rgba(0,0,0,0.25);
+}
+
+/* Click: si schiaccia */
+button:active {
+	transform: translateY(4px);
+	box-shadow: 
+		0 2px 0 rgba(0,0,0,0.25),
+		0 4px 10px rgba(0,0,0,0.2);
+}
+
+.btn1 { background: #ff6b6b; }
+.btn2 { background: #4ecdc4; }
+.btn3 { background: #1a73e8; }
+.btn4 { background: #f7b731; }
+.btnhome { background: #5fcc68}
+
+.box, .boxbot, .api-section {
+    width: 90%;     /* invece di 300px */
+    max-width: 400px; /* non diventano troppo grandi su desktop */
+    padding: 2vw;   /* invece di 20px */
+}
+
+.box {
+    border: 2px solid black;
+    padding: 20px;
+    width: 300px;
+    border-bottom: none;
+}
+
+.boxbot{
+    border: 2px solid black;
+    padding: 20px;
+    width: 300px;
+    margin-bottom: 20px;
+}
+
+.api-section {
+    background: white;
+    padding: 20px;
+    width: 300px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-family: Arial, sans-serif;
+    margin-bottom: 20px;
+    overflow-y: auto;
+}
+
+.labelimg {
+    display: flex;
+    vertical-align: left;
+    gap: 10px;
+    overflow-y: auto;
+}
