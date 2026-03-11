@@ -10,10 +10,25 @@
 <div class="container">
     <h1>Homepage</h1>
     <div class="button-grid">
-        <a href="vedi.html"><button class="btn1">Vedi tutte le ricette</button></a>
+        <label for ="portata-index">Portata delle ricette da vedere: </label>
+        <select id="portata-index" name="portata-index">
+            <option value="PRIMO PIATTO">Primo Piatto</option>
+            <option value="SECONDO PIATTO">Secondo Piatto</option>
+            <option value="PIATTO UNICO">Piatto Unico</option>
+            <option value="CONTORNO">Contorno</option>
+            <option value="DOLCE">Dolce</option>
+            <option value="ANTIPASTO">Antipasto</option>
+            <option value="TUTTE">Tutte</option>
+        </select>
+        <button class="btn1" id="btn1">Vedi le ricette</button>
         <a href = "inserisci.html"><button class="btn2">Inserisci una ricetta</button></a>
     </div>
 </div>
+<div id="container-lista">
+    <div class="resultLettura" id="resultLettura"></div>
+</div>
+
+<script src="js/script.js"></script>
 
 </body>
 </html>

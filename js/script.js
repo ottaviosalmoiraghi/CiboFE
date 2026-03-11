@@ -1,14 +1,18 @@
 let contatore=0;
 
-function LeggiRicette(){
-    fetch("https://cibobe.onrender.com/api/read")
+document.getElementById("btn1").addEventListener("click", () => {
+    const port = document.getElementById("portata-index");
+    let url = "https://cibobe.onrender.com/api/read";
+    const resultDiv = document.getElementById("resultLettura");
+    const container = document.getElementById("container-lista");
+    resultDiv.innerHTML = ""; // pulisco
+    if (port.value != "TUTTE") url=`https://cibobe.onrender.com/api/portata/${encodeURIComponent(port.value)}`;
+    fetch(url)
         .then(response => {
                 if (!response.ok) throw new Error("Errore nella chiamata GET");
                 return response.json(); // trasformo JSON in oggetto JS
             })
         .then(data => {
-            const resultDiv = document.getElementById("resultLettura");
-            resultDiv.innerHTML = ""; // pulisco
             data.forEach(ricetta => {
                 const p = document.createElement("div");
                 p.textContent = ricetta.nome;
@@ -16,11 +20,17 @@ function LeggiRicette(){
                 p.className = "boxbot";
                 resultDiv.appendChild(p);
             });
+            // Controllo se ci sono elementi, dentro il then
+            if (resultDiv.hasChildNodes()) {
+                container.classList.add("container"); // mostra container
+            } else {
+                container.classList.remove("container"); // nasconde container o usa la tua classe di default
+            }
         })
         .catch(error => {
             console.error("Errore:", error);
         });
-}
+})
 
 function InserisciRicetta(){
     const nomeRicetta=document.getElementById("nome").value;
