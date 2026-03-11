@@ -1,7 +1,7 @@
 let contatore=0;
 
 function LeggiRicette(){
-    fetch("http://192.168.1.50:8080/api/read")
+    fetch("https://cibobe.onrender.com/api/read")
         .then(response => {
                 if (!response.ok) throw new Error("Errore nella chiamata GET");
                 return response.json(); // trasformo JSON in oggetto JS
@@ -40,7 +40,7 @@ function InserisciRicetta(){
         ingredienti: ingredienti
     };
 
-    fetch("http://192.168.1.50:8080/api/insert", {
+    fetch("https://cibobe.onrender.com/api/insert", {
         method: 'POST',
         headers: {
             'Content-type': 'application/json'
@@ -68,4 +68,5 @@ function AggiungiIngrediente(){
     div.className = "ingrediente";
     div.innerHTML=`<label for = "ingrediente${contatore}">Nome ingrediente ${contatore}: </label><input type="text" name="ingrediente${contatore}" id="ingrediente${contatore}" placeholder="Inserisci il nome dell ingrediente" maxlength="45"><br><label for = "quantita${contatore}">Quantità in grammi: </label><input type="number" name="quantita${contatore}" id="quantita${contatore}" placeholder="Inserisci la quantità"">`;
     contenitore.appendChild(div);
+
 }
