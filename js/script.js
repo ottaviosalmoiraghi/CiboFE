@@ -5,35 +5,52 @@ document.getElementById("btn1").addEventListener("click", async () => {
     let url = "https://cibobe.onrender.com/api/read";
     const resultDiv = document.getElementById("resultLettura");
     const container = document.getElementById("container-lista");
-    resultDiv.innerHTML = ""; // pulisco
-    if (port.value != "TUTTE")
+
+    // Se è selezionata una portata specifica
+    if (port.value !== "TUTTE") {
         url = `https://cibobe.onrender.com/api/portata/${encodeURIComponent(port.value)}`;
+    }
+
     try {
         const response = await fetch(url);
-        if (!response.ok) {
-            throw new Error("Errore nella chiamata GET");
-        }
+        if (!response.ok) throw new Error("Errore nella chiamata GET");
+
         const data = await response.json();
-        data.forEach((ricetta) => {
+
+        // Se non ci sono dati, nascondi subito il container e pulisci il div
+        if (data.length === 0) {
+            resultDiv.innerHTML = "";
+            container.classList.remove("visible");
+            return;
+        }
+
+        // Crea un fragment in memoria e aggiungi tutti i risultati
+        const tempDiv = document.createDocumentFragment();
+        data.forEach(ricetta => {
             const p = document.createElement("div");
             p.textContent = ricetta.nome;
             p.style.color = "red";
             p.className = "boxbot";
-            resultDiv.appendChild(p);
+            tempDiv.appendChild(p);
         });
-        if (resultDiv.hasChildNodes()) {
-            container.classList.add("container"); // mostra container
-        } else {
-            container.classList.remove("container"); // nasconde container o usa la tua classe di default
-        }
+
+        // Aggiorna il DOM **in un colpo solo**
+        resultDiv.innerHTML = "";
+        resultDiv.appendChild(tempDiv);
+
+        // Usa toggle in sicurezza: mostra solo se ci sono dati
+        container.classList.toggle("visible", data.length > 0);
+
     } catch (error) {
         console.error("Errore:", error);
+        // nascondi il container se c'è un errore
+        container.classList.remove("visible");
+        resultDiv.innerHTML = "";
     }
 });
 
-function InserisciRicetta() {
+async function InserisciRicetta() {
     const nomeRicetta = document.getElementById("nome").value;
-    const numIngredienti = contatore;
     const portata = document.getElementById("portata").value;
     const ingredienti = [];
     for (i = 1; i <= contatore; i++) {
@@ -42,32 +59,39 @@ function InserisciRicetta() {
             quantita4: document.getElementById(`quantita${i}`).value,
         });
     }
+    const ingredientiFinali = ingredienti.filter(ing => {
+        if(ing.ingrediente != "") return true;
+        else {
+            contatore--
+            return false
+        };
+    })
+    const numIngredienti = contatore;
     const dati = {
         nomeRicetta: nomeRicetta,
         numIngredienti: numIngredienti,
         portata: portata,
-        ingredienti: ingredienti,
+        ingredienti: ingredientiFinali,
     };
 
-    fetch("https://cibobe.onrender.com/api/insert", {
-        method: "POST",
-        headers: {
-            "Content-type": "application/json",
-        },
-        body: JSON.stringify(dati),
-    })
-        .then((response) => {
-            if (!response.ok) throw new Error("Errore nella chiamata GET");
-            return response.json(); // trasformo JSON in oggetto JS
+    try {
+        const response = await fetch("https://cibobe.onrender.com/api/insert", {
+            method: "POST",
+            headers: {
+                "Content-type": "application/json",
+            },
+            body: JSON.stringify(dati),
         })
-        .then((data) => {
-            console.log(data);
-            alert("Ricetta inserita con successo!");
-        })
-        .catch((error) => {
-            console.error("Errore:", error);
-            alert("Errore durante l'invio dei dati");
-        });
+        if (!response.ok) {
+            throw new Error("Errore nella chiamata POST");
+        }
+        const data = await response.json();
+        console.log(data);
+        alert("Ricetta inserita con successo!");
+    } catch (error) {
+        console.error("Errore:", error);
+        alert("Errore durante l'invio dei dati");
+    }
 }
 
 function AggiungiIngrediente() {

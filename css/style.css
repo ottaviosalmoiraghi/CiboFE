@@ -115,3 +115,23 @@ button:active {
     gap: 10px;
     overflow-y: auto;
 }
+
+#container-lista{
+    background: white;
+    padding: 5vw;       /* invece di 40px */
+    border-radius: 5vw;  /* invece di 20px */
+    box-shadow: 0 2vw 5vw rgba(0,0,0,0.2);
+    text-align: center;
+    overflow: hidden;
+    max-width: 90%;      /* non uscire dal viewport */
+    display: none;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+#container-lista.visible{
+    display: block;
+    visibility: visible;
+    opacity: 1;
+}
