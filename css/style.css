@@ -125,13 +125,12 @@ button:active {
     overflow: hidden;
     max-width: 90%;      /* non uscire dal viewport */
     display: none;
-    visibility: hidden;
-    opacity: 0;
-    transition: opacity 0.2s ease;
 }
 
 #container-lista.visible{
     display: block;
-    visibility: visible;
-    opacity: 1;
+}
+
+.errore{
+    border: 2px solid red;
 }

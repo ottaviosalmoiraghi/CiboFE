@@ -53,6 +53,8 @@ async function InserisciRicetta() {
     const nomeRicetta = document.getElementById("nome").value;
     const portata = document.getElementById("portata").value;
     const ingredienti = [];
+    const contenitoreInput = document.getElementById("nome");
+    contenitoreInput.classList.remove("errore");
     for (i = 1; i <= contatore; i++) {
         ingredienti.push({
             ingrediente: document.getElementById(`ingrediente${i}`).value,
@@ -66,6 +68,10 @@ async function InserisciRicetta() {
             return false
         };
     })
+    if(nomeRicetta == ""){
+        contenitoreInput.classList.add("errore");
+        return;
+    }
     const numIngredienti = contatore;
     const dati = {
         nomeRicetta: nomeRicetta,
