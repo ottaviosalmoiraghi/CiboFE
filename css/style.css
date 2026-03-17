@@ -1,27 +1,87 @@
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+table{
+    width: 100%;
+    border-collapse: collapse;
+    padding: 20px;
+}
+
+table th, table td{
+    border: solid 1px black;
+    padding: 8px;
+    text-align: left;
+    width: 50%;
+}
+
+table th{
+    background-color: beige;
+}
+
 body {
-    margin: 0;
     height: 100vh;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    background: linear-gradient(135deg, #667eea, #764ba2);
+    flex-direction: column;
     font-family: Arial, sans-serif;
-    background-attachment: fixed;
+}
+
+nav {
+    width: 100%;
+    height: 150px;
+    top: 0;
+    position: fixed;
+    display: flex;
+    border: solid 2px black;
+}
+
+nav div {
+    background-color: white;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    /* meglio di flex */
+}
+
+img:hover {
+    border: solid 1px black;
+}
+
+img:active {
+    transform: translateY(4px);
+    box-shadow:
+        0 2px 0 rgba(0, 0, 0, 0.25),
+        0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.hamburger-container {
+    width: 150px;
+    height: 100%;
+    position: relative;
 }
 
 .container {
-    background: white;
-    padding: 5vw;       /* invece di 40px */
-    border-radius: 5vw;  /* invece di 20px */
-    box-shadow: 0 2vw 5vw rgba(0,0,0,0.2);
+    padding: 5vw;
+    /* invece di 40px */
+    border-radius: 5vw;
+    /* invece di 20px */
     text-align: center;
     overflow: hidden;
-    max-width: 90%;      /* non uscire dal viewport */
+    max-width: 90%;
+    /* non uscire dal viewport */
 }
 
-.resultLettura {
-  max-height: 500px;
-  overflow-y: auto; /* qui avviene lo scroll */
+.table-section {
+    height: 100%;
+    overflow-y: auto;
+    width: 40%;
 }
 
 h1 {
@@ -29,56 +89,49 @@ h1 {
     color: #252020;
 }
 
-.button-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+.main, .vedi{
+    flex:1;
+    overflow-y: auto;
     gap: 2vw;
-    justify-content: center;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.main{
+    margin-top: 150px;
 }
 
 button {
-	padding: 15px 20px;
-	border: none;
-	border-radius: 12px;
-	font-size: 16px;
-	cursor: pointer;
-	color: white;
-	font-weight: bold;
-
-	/* Effetto profondità */
-	box-shadow: 
-		0 6px 0 rgba(0,0,0,0.25),   /* bordo inferiore (spessore) */
-		0 10px 20px rgba(0,0,0,0.2); /* ombra esterna */
-
-	transition: all 0.15s ease;
+    padding: 20px;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: bold;
+    background-color: unset;
 }
 
 /* Hover: si solleva */
 button:hover {
-	transform: translateY(-2px);
-	box-shadow: 
-		0 8px 0 rgba(0,0,0,0.25),
-		0 14px 25px rgba(0,0,0,0.25);
+    transform: translateY(-2px);
+    text-decoration: underline;
 }
 
 /* Click: si schiaccia */
 button:active {
-	transform: translateY(4px);
-	box-shadow: 
-		0 2px 0 rgba(0,0,0,0.25),
-		0 4px 10px rgba(0,0,0,0.2);
+    transform: translateY(4px);
 }
 
-.btn1 { background: #ff6b6b; }
-.btn2 { background: #4ecdc4; }
-.btn3 { background: #1a73e8; }
-.btn4 { background: #f7b731; }
-.btnhome { background: #5fcc68}
-
-.box, .boxbot, .api-section {
-    width: 90%;     /* invece di 300px */
-    max-width: 400px; /* non diventano troppo grandi su desktop */
-    padding: 2vw;   /* invece di 20px */
+.box,
+.boxbot,
+.api-section {
+    width: 90%;
+    /* invece di 300px */
+    max-width: 400px;
+    /* non diventano troppo grandi su desktop */
+    padding: 2vw;
+    /* invece di 20px */
 }
 
 .box {
@@ -88,7 +141,7 @@ button:active {
     border-bottom: none;
 }
 
-.boxbot{
+.boxbot {
     border: 2px solid black;
     padding: 20px;
     width: 300px;
@@ -100,7 +153,7 @@ button:active {
     padding: 20px;
     width: 300px;
     border-radius: 12px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -109,28 +162,42 @@ button:active {
     overflow-y: auto;
 }
 
-.labelimg {
+.container-lista {
+    padding: 10px;
+    text-align: center;
+    overflow: auto;
+    /* non uscire dal viewport */
     display: flex;
-    vertical-align: left;
-    gap: 10px;
-    overflow-y: auto;
+    justify-content: center;
 }
 
-#container-lista{
-    background: white;
-    padding: 5vw;       /* invece di 40px */
-    border-radius: 5vw;  /* invece di 20px */
-    box-shadow: 0 2vw 5vw rgba(0,0,0,0.2);
-    text-align: center;
-    overflow: hidden;
-    max-width: 90%;      /* non uscire dal viewport */
+.error {
+    border: 2px solid red;
+}
+
+.sidebar {
+    top: 150px;
+    width: 30%;
+    left: 0;
+    height: 100%;
+    background-color: rgb(186, 146, 108);
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 10px 5px 5px brown;
+}
+
+.sidebar button{
+    background-color: unset;
+    border: unset;
+    box-shadow: unset;
+    cursor: pointer;
+}
+
+.hidden {
     display: none;
 }
 
-#container-lista.visible{
-    display: block;
-}
-
-.errore{
-    border: 2px solid red;
+.btn{
+    border: solid 1px black;
 }

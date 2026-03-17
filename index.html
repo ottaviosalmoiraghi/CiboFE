@@ -1,33 +1,132 @@
 <!DOCTYPE html>
 <html lang="it">
+
 <head>
     <meta charset="UTF-8">
-    <title>Pagina di Prova</title>
+    <title>App Cibo</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
-<div class="container">
-    <h1>Homepage</h1>
-    <div class="button-grid">
-        <label for ="portata-index">Portata delle ricette da vedere: </label>
-        <select id="portata-index" name="portata-index">
-            <option value="PRIMO PIATTO">Primo Piatto</option>
-            <option value="SECONDO PIATTO">Secondo Piatto</option>
-            <option value="PIATTO UNICO">Piatto Unico</option>
-            <option value="CONTORNO">Contorno</option>
-            <option value="DOLCE">Dolce</option>
-            <option value="ANTIPASTO">Antipasto</option>
-            <option value="TUTTE">Tutte</option>
-        </select>
-        <button class="btn1" id="btn1">Vedi le ricette</button>
-        <a href = "inserisci.html"><button class="btn2">Inserisci una ricetta</button></a>
-    </div>
-</div>
-<div id="container-lista">
-    <div class="resultLettura" id="resultLettura"></div>
-</div>
 
-<script src="js/script.js"></script>
+<body>
+    <nav>
+        <div class="hamburger-container">
+            <img src="img/hamburger.jpg" id="hamburger" title="Apri Menu">
+        </div>
+    </nav>
+    <div class="sidebar hidden" id="sidebar">
+        <button id="show">Vedi Lista</button>
+        <button id="insert">Inserisci Ricetta</button>
+    </div>
+    <div class="main" id="main">
+        <div id="vedi-ricette-container" class="vedi hidden">
+            <div>
+                <label for="portata-index">Portata: </label>
+                <select id="portata-index" name="portata-index">
+                    <option value="PRIMO PIATTO">Primo Piatto</option>
+                    <option value="SECONDO PIATTO">Secondo Piatto</option>
+                    <option value="PIATTO UNICO">Piatto Unico</option>
+                    <option value="CONTORNO">Contorno</option>
+                    <option value="DOLCE">Dolce</option>
+                    <option value="ANTIPASTO">Antipasto</option>
+                    <option value="TUTTE">Tutte</option>
+                </select>
+            </div>
+            <div>
+                <button class="btn" id="btn">Vedi Ricette</button>
+            </div>
+            <div id="container-lista" class="container-lista hidden">
+                <div class="table-section" id="resultLettura"></div>
+            </div>
+        </div>
+        <div id="inserisci-ricette-container" class="vedi hidden">
+            <div>
+                <label for="nome">Nome ricetta: </label><input type="text" id="nome" placeholder="Nome della ricetta"
+                    maxlength="45">
+            </div>
+            <div>
+                <label for="portata">Portata: </label>
+                <select id="portata" name="portata">
+                    <option value="PRIMO PIATTO">Primo Piatto</option>
+                    <option value="SECONDO PIATTO">Secondo Piatto</option>
+                    <option value="PIATTO UNICO">Piatto Unico</option>
+                    <option value="CONTORNO">Contorno</option>
+                    <option value="DOLCE">Dolce</option>
+                    <option value="ANTIPASTO">Antipasto</option>
+                </select>
+            </div>
+            <div id="insertTable" class="container-lista">
+                <table class="table-section">
+                    <thead>
+                        <tr>
+                            <th>Nome Ingrediente</th>
+                            <th>Quantità</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input type="text" name="ingrediente1" id="ingrediente1"
+                                    placeholder="Nome dell'ingrediente" maxlength="45"></td>
+                            <td><input type="number" name="quantita1" id="quantita1" placeholder="Quantità"></td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" name="ingrediente2" id="ingrediente2"
+                                    placeholder="Nome dell'ingrediente" maxlength="45"></td>
+                            <td><input type="number" name="quantita2" id="quantita2" placeholder="Quantità"></td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" name="ingrediente3" id="ingrediente3"
+                                    placeholder="Nome dell'ingrediente" maxlength="45"></td>
+                            <td><input type="number" name="quantita3" id="quantita3" placeholder="Quantità"></td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" name="ingrediente4" id="ingrediente4"
+                                    placeholder="Nome dell'ingrediente" maxlength="45"></td>
+                            <td><input type="number" name="quantita4" id="quantita4" placeholder="Quantità"></td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" name="ingrediente5" id="ingrediente5"
+                                    placeholder="Nome dell'ingrediente" maxlength="45"></td>
+                            <td><input type="number" name="quantita5" id="quantita5" placeholder="Quantità"></td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" name="ingrediente6" id="ingrediente6"
+                                    placeholder="Nome dell'ingrediente" maxlength="45"></td>
+                            <td><input type="number" name="quantita6" id="quantita6" placeholder="Quantità"></td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" name="ingrediente7" id="ingrediente7"
+                                    placeholder="Nome dell'ingrediente" maxlength="45"></td>
+                            <td><input type="number" name="quantita7" id="quantita7" placeholder="Quantità"></td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" name="ingrediente8" id="ingrediente8"
+                                    placeholder="Nome dell'ingrediente" maxlength="45"></td>
+                            <td><input type="number" name="quantita8" id="quantita8" placeholder="Quantità"></td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" name="ingrediente9" id="ingrediente9"
+                                    placeholder="Nome dell'ingrediente" maxlength="45"></td>
+                            <td><input type="number" name="quantita9" id="quantita9" placeholder="Quantità"></td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" name="ingrediente10" id="ingrediente10"
+                                    placeholder="Nome dell'ingrediente" maxlength="45"></td>
+                            <td><input type="number" name="quantita10" id="quantita10" placeholder="Quantità"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!-- <label for="immagine">Inserisci ingrediente</label>
+                <img src="img/plus.png" alt="Aggiungi ingrediente" width="20" onclick="AggiungiIngrediente()"
+                    style="cursor:pointer;" title="Aggiungi un nuovo ingrediente" id="immagine"> -->
+            </div>
+            <div id="contenitore-bottone">
+                <button id="invio" class="btn" onclick="InserisciRicetta()">Inserisci Ricetta</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
 
 </body>
+
 </html>
