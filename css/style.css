@@ -255,15 +255,21 @@ button:active {
     .table-section {
         width: 100%;
         overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        overflow-y: auto;
     }
 
     table {
         font-size: 14px;
         min-width: 400px; /* evita che si schiacci troppo */
+        overflow-x: auto;
+        overflow-y: auto;
     }
 
     th, td {
+        font-size: 14px;
         padding: 10px;
+        white-space: nowrap; /* evita che si rompa il layout */
     }
 
     /* CONTAINER */
@@ -275,7 +281,6 @@ button:active {
 
     /* LISTA centrata meglio */
     .container-lista {
-        flex-direction: column;
-        align-items: center;
+        display:block;
     }
 }
