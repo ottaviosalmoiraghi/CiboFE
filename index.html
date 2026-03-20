@@ -49,7 +49,7 @@
     <!-- main -->
     <main class="container mt-5 pt-4">
         <div class="d-none" id="vediRicette">
-            <h1 class="text-center">Vedi Ricette</h1>
+            <h1 class="text-center">Ricette</h1>
             <div class="d-grid col-md-3 mx-auto pt-4">
                 <label for="portataIndex" class="form-label">Portata</label>
                 <select class="form-select" aria-label="Default select example" id="portataIndex">
@@ -71,7 +71,7 @@
             </div>
         </div>
         <div class="d-none" id="inserisciRicette">
-            <h1 class="text-center">Inserisci Ricetta</h1>
+            <h1 class="text-center">Inserisci</h1>
             <div class="d-grid mx-auto pt-4">
                 <label for="nomeRicettaInput" class="form-label">Nome Ricetta</label>
                 <input type="text" class="form-control" id="nomeRicettaInput"
@@ -100,6 +100,9 @@
             </div>
             <div class="d-grid col-md-2 mx-auto pt-4">
                 <button class="btn btn-primary disabled" type="submit" id="btnIngredienti">Aggiungi Ingredienti</button>
+            </div>
+            <div class="pt-4" id="containerInputIngredienti">
+                <div id="inputIngredienti"></div>
             </div>
             <div class="d-grid col-md-2 mx-auto pt-4">
                 <button class="btn btn-primary d-none" type="submit" id="btnInserimentoRicetta">Inserisci Ricetta</button>
