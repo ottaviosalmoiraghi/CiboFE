@@ -1,8 +1,8 @@
 document.getElementById("btn").addEventListener("click", async () => {
-    const port = document.getElementById("portata-index");
+    const port = document.getElementById("portataIndex");
     let url = "https://cibobe.onrender.com/api/read";
-    const resultDiv = document.getElementById("resultLettura");
-    const container = document.getElementById("container-lista");
+    const resultDiv = document.getElementById("tabellaRicette");
+    const container = document.getElementById("containerTabella");
 
     // Se è selezionata una portata specifica
     if (port.value !== "TUTTE") {
@@ -18,7 +18,7 @@ document.getElementById("btn").addEventListener("click", async () => {
         // Se non ci sono dati, nascondi subito il container e pulisci il div
         if (data.length === 0) {
             resultDiv.innerHTML = "";
-            container.classList.add("hidden");
+            container.classList.add("d-none");
             return;
         }
 
@@ -31,8 +31,12 @@ document.getElementById("btn").addEventListener("click", async () => {
         let th1Head = document.createElement("th");
         let th2Head = document.createElement("th");
 
-        th1Head.textContent="Nome Ricetta";
-        th2Head.textContent="Portata";
+        table.classList.add("table");
+        table.classList.add("table-striped");
+        table.classList.add("table-bordered");
+
+        th1Head.textContent = "Nome Ricetta";
+        th2Head.textContent = "Portata";
         trHead.appendChild(th1Head);
         trHead.appendChild(th2Head);
         tHead.appendChild(trHead)
@@ -59,89 +63,89 @@ document.getElementById("btn").addEventListener("click", async () => {
         resultDiv.appendChild(tempDiv);
 
         // Usa toggle in sicurezza: mostra solo se ci sono dati
-        container.classList.remove("hidden");
+        container.classList.remove("d-none");
 
     } catch (error) {
         console.error("Errore:", error);
         // nascondi il container se c'è un errore
-        container.classList.add("hidden");
+        container.classList.add("d-none");
         resultDiv.innerHTML = "";
     }
 });
 
-async function InserisciRicetta() {
-    const nomeRicetta = document.getElementById("nome");
-    const portata = document.getElementById("portata").value;
-    const ingredienti = [];
-    const contenitoreInput = document.getElementById("nome");
-    contenitoreInput.classList.remove("error");
-    for (i = 1; i <= 10; i++) {
-        ingredienti.push({
-            ingrediente: document.getElementById(`ingrediente${i}`).value,
-            quantita4: document.getElementById(`quantita${i}`).value,
-        });
-    }
-    const ingredientiFinali = ingredienti.filter(ing => {
-        if(ing.ingrediente != "") return true;
-        else return false;
-    })
-    if(nomeRicetta.value == ""){
-        contenitoreInput.classList.add("error");
-        return;
-    }
-    const contatore = ingredientiFinali.length;
-    const numIngredienti = contatore;
-    const dati = {
-        nomeRicetta: nomeRicetta.value,
-        numIngredienti: numIngredienti,
-        portata: portata,
-        ingredienti: ingredientiFinali,
-    };
+document.getElementById("btnIngredienti").addEventListener("click", () => {
+})
 
-    try {
-        const response = await fetch("https://cibobe.onrender.com/api/insert", {
-            method: "POST",
-            headers: {
-                "Content-type": "application/json",
-            },
-            body: JSON.stringify(dati),
-        })
-        if (!response.ok) {
-            throw new Error("Errore nella chiamata POST");
-        }
-        const data = await response.json();
-        console.log(data);
-        alert("Ricetta inserita con successo!");
-    } catch (error) {
-        console.error("Errore:", error);
-        alert("Errore durante l'invio dei dati");
-    }
+// document.getElementById("invio").addEventListener( "click", async ()=> {
+//     const nomeRicetta = document.getElementById("nomeRicettaInput");
+//     const portata = document.getElementById("inserimentoPortata").value;
+//     const ingredienti = [];
+//     nomeRicetta.classList.remove("error");
+//     for (i = 1; i <= 10; i++) {
+//         ingredienti.push({
+//             ingrediente: document.getElementById(`ingrediente${i}`).value,
+//             quantita4: document.getElementById(`quantita${i}`).value,
+//         });
+//     }
+//     const ingredientiFinali = ingredienti.filter(ing => {
+//         if(ing.ingrediente != "") return true;
+//         else return false;
+//     })
+//     if(nomeRicetta.value == ""){
+//         contenitoreInput.classList.add("error");
+//         return;
+//     }
+//     const contatore = ingredientiFinali.length;
+//     const numIngredienti = contatore;
+//     const dati = {
+//         nomeRicetta: nomeRicetta.value,
+//         numIngredienti: numIngredienti,
+//         portata: portata,
+//         ingredienti: ingredientiFinali,
+//     };
 
-    for (i = 1; i <= 10; i++) {
-        document.getElementById(`ingrediente${i}`).value = "";
-        document.getElementById(`quantita${i}`).value = "";
-    }
-    nomeRicetta.value="";
-}
+//     try {
+//         const response = await fetch("https://cibobe.onrender.com/api/insert", {
+//             method: "POST",
+//             headers: {
+//                 "Content-type": "application/json",
+//             },
+//             body: JSON.stringify(dati),
+//         })
+//         if (!response.ok) {
+//             throw new Error("Errore nella chiamata POST");
+//         }
+//         const data = await response.json();
+//         console.log(data);
+//         alert("Ricetta inserita con successo!");
+//     } catch (error) {
+//         console.error("Errore:", error);
+//         alert("Errore durante l'invio dei dati");
+//     }
 
-const vediLista=document.getElementById("show");
+//     for (i = 1; i <= 10; i++) {
+//         document.getElementById(`ingrediente${i}`).value = "";
+//         document.getElementById(`quantita${i}`).value = "";
+//     }
+//     nomeRicetta.value="";
+// });
 
-document.getElementById("hamburger").addEventListener("click", ()=>{
-    document.getElementById("sidebar").classList.toggle("hidden");
+
+document.getElementById("navVediRicette").addEventListener("click", () => {
+    document.getElementById("vediRicette").classList.remove("d-none");
+    document.getElementById("containerTabella").classList.add("d-none");
+    document.getElementById("inserisciRicette").classList.add("d-none");
+    document.getElementById("portataIndex").value = "";
 });
 
-document.getElementById("show").addEventListener("click", ()=>{
-    document.getElementById("vedi-ricette-container").classList.remove("hidden");
-    document.getElementById("sidebar").classList.add("hidden");
-    document.getElementById("inserisci-ricette-container").classList.add("hidden");
+document.getElementById("navInserisciRicette").addEventListener("click", () => {
+    document.getElementById("inserisciRicette").classList.remove("d-none");
+    document.getElementById("vediRicette").classList.add("d-none");
 });
 
-document.getElementById("insert").addEventListener("click", ()=>{
-    document.getElementById("vedi-ricette-container").classList.add("hidden");
-    document.getElementById("sidebar").classList.add("hidden");
-    document.getElementById("inserisci-ricette-container").classList.remove("hidden");
-});
-
-document.getElementById("main").addEventListener("click", ()=>{
-    document.getElementById("sidebar").classList.add("hidden");
-});
+document.getElementById("numeroIngredientiInput").addEventListener("input", () => {
+    const numeroIngredienti = document.getElementById("numeroIngredientiInput");
+    const bottoneIngredienti = document.getElementById("btnIngredienti");
+    if (numeroIngredienti.value == "") bottoneIngredienti.classList.add("disabled");
+    else bottoneIngredienti.classList.remove("disabled");
+})

@@ -1,28 +1,59 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="it">
 
 <head>
-    <meta charset="UTF-8">
-    <title>App Cibo</title>
-    <link rel="stylesheet" href="css/style.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 </head>
 
 <body>
-    <nav>
-        <div class="hamburger-container">
-            <img src="img/hamburger.jpg" id="hamburger" title="Apri Menu">
+    <!-- navbar -->
+    <nav class="navbar bg-body-tertiary fixed-top">
+        <div class="container-fluid">
+            <h1 class="text-center">Velkina cucina</h1>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+                aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar"
+                aria-labelledby="offcanvasNavbarLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3 gap-2">
+                        <li class="nav-item">
+                            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
+                                data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar"
+                                aria-label="Toggle navigation" id="navVediRicette">
+                                Vedi Ricette
+                            </button>
+                        </li>
+                        <li class="nav-item">
+                            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
+                                data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar"
+                                aria-label="Toggle navigation" id="navInserisciRicette">
+                                Inserisci Ricette
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </nav>
-    <div class="sidebar hidden" id="sidebar">
-        <button id="show">Vedi Lista</button>
-        <button id="insert">Inserisci Ricetta</button>
-    </div>
-    <div class="main" id="main">
-        <div id="vedi-ricette-container" class="vedi hidden">
-            <div>
-                <label for="portata-index">Portata: </label>
-                <select id="portata-index" name="portata-index">
+
+    <!-- main -->
+    <main class="container mt-5 pt-4">
+        <div class="d-none" id="vediRicette">
+            <h1 class="text-center">Vedi Ricette</h1>
+            <div class="d-grid col-md-3 mx-auto pt-4">
+                <label for="portataIndex" class="form-label">Portata</label>
+                <select class="form-select" aria-label="Default select example" id="portataIndex">
+                    <option selected value="">Seleziona la portata da vedere</option>
                     <option value="PRIMO PIATTO">Primo Piatto</option>
                     <option value="SECONDO PIATTO">Secondo Piatto</option>
                     <option value="PIATTO UNICO">Piatto Unico</option>
@@ -32,21 +63,24 @@
                     <option value="TUTTE">Tutte</option>
                 </select>
             </div>
-            <div>
-                <button class="btn" id="btn">Vedi Ricette</button>
+            <div class="d-grid col-md-2 mx-auto pt-4">
+                <button class="btn btn-primary" type="submit" id="btn">Vedi Ricette</button>
             </div>
-            <div id="container-lista" class="container-lista hidden">
-                <div class="table-section" id="resultLettura"></div>
+            <div class="pt-4" id="containerTabella">
+                <div id="tabellaRicette"></div>
             </div>
         </div>
-        <div id="inserisci-ricette-container" class="vedi hidden">
-            <div>
-                <label for="nome">Nome ricetta: </label><input type="text" id="nome" placeholder="Nome della ricetta"
-                    maxlength="45">
+        <div class="" id="inserisciRicette">
+            <h1 class="text-center">Inserisci Ricetta</h1>
+            <div class="d-grid mx-auto pt-4">
+                <label for="nomeRicettaInput" class="form-label">Nome Ricetta</label>
+                <input type="text" class="form-control" id="nomeRicettaInput"
+                    placeholder="Inserisci il nome della ricetta">
             </div>
-            <div>
-                <label for="portata">Portata: </label>
-                <select id="portata" name="portata">
+            <div class="d-grid mx-auto pt-4">
+                <label for="inserimentoPortata" class="form-label">Portata Ricetta</label>
+                <select class="form-select" aria-label="Default select example" id="inserimentoPortata">
+                    <option selected value="">Seleziona la portata della ricetta</option>
                     <option value="PRIMO PIATTO">Primo Piatto</option>
                     <option value="SECONDO PIATTO">Secondo Piatto</option>
                     <option value="PIATTO UNICO">Piatto Unico</option>
@@ -55,76 +89,29 @@
                     <option value="ANTIPASTO">Antipasto</option>
                 </select>
             </div>
-            <div id="insertTable" class="container-lista">
-                <table class="table-section">
-                    <thead>
-                        <tr>
-                            <th>Nome Ingrediente</th>
-                            <th>Quantità</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><input type="text" name="ingrediente1" id="ingrediente1"
-                                    placeholder="Nome dell'ingrediente" maxlength="45"></td>
-                            <td><input type="number" name="quantita1" id="quantita1" placeholder="Quantità"></td>
-                        </tr>
-                        <tr>
-                            <td><input type="text" name="ingrediente2" id="ingrediente2"
-                                    placeholder="Nome dell'ingrediente" maxlength="45"></td>
-                            <td><input type="number" name="quantita2" id="quantita2" placeholder="Quantità"></td>
-                        </tr>
-                        <tr>
-                            <td><input type="text" name="ingrediente3" id="ingrediente3"
-                                    placeholder="Nome dell'ingrediente" maxlength="45"></td>
-                            <td><input type="number" name="quantita3" id="quantita3" placeholder="Quantità"></td>
-                        </tr>
-                        <tr>
-                            <td><input type="text" name="ingrediente4" id="ingrediente4"
-                                    placeholder="Nome dell'ingrediente" maxlength="45"></td>
-                            <td><input type="number" name="quantita4" id="quantita4" placeholder="Quantità"></td>
-                        </tr>
-                        <tr>
-                            <td><input type="text" name="ingrediente5" id="ingrediente5"
-                                    placeholder="Nome dell'ingrediente" maxlength="45"></td>
-                            <td><input type="number" name="quantita5" id="quantita5" placeholder="Quantità"></td>
-                        </tr>
-                        <tr>
-                            <td><input type="text" name="ingrediente6" id="ingrediente6"
-                                    placeholder="Nome dell'ingrediente" maxlength="45"></td>
-                            <td><input type="number" name="quantita6" id="quantita6" placeholder="Quantità"></td>
-                        </tr>
-                        <tr>
-                            <td><input type="text" name="ingrediente7" id="ingrediente7"
-                                    placeholder="Nome dell'ingrediente" maxlength="45"></td>
-                            <td><input type="number" name="quantita7" id="quantita7" placeholder="Quantità"></td>
-                        </tr>
-                        <tr>
-                            <td><input type="text" name="ingrediente8" id="ingrediente8"
-                                    placeholder="Nome dell'ingrediente" maxlength="45"></td>
-                            <td><input type="number" name="quantita8" id="quantita8" placeholder="Quantità"></td>
-                        </tr>
-                        <tr>
-                            <td><input type="text" name="ingrediente9" id="ingrediente9"
-                                    placeholder="Nome dell'ingrediente" maxlength="45"></td>
-                            <td><input type="number" name="quantita9" id="quantita9" placeholder="Quantità"></td>
-                        </tr>
-                        <tr>
-                            <td><input type="text" name="ingrediente10" id="ingrediente10"
-                                    placeholder="Nome dell'ingrediente" maxlength="45"></td>
-                            <td><input type="number" name="quantita10" id="quantita10" placeholder="Quantità"></td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div class="row g-3 align-items-center pt-4">
+                <div class="col-auto">
+                    <label for="numeroIngredientiInput" class="form-label">Numero Ingredienti</label>
+                </div>
+                <div class="col-md-6">
+                    <input type="number" class="form-control" id="numeroIngredientiInput"
+                        placeholder="Inserisci il numero di ingredienti">
+                </div>
             </div>
-            <div id="contenitore-bottone">
-                <button id="invio" class="btn" onclick="InserisciRicetta()">Inserisci Ricetta</button>
+            <div class="d-grid col-md-2 mx-auto pt-4">
+                <button class="btn btn-primary disabled" type="submit" id="btnIngredienti">Aggiungi Ingredienti</button>
+            </div>
+            <div class="d-grid col-md-2 mx-auto pt-4">
+                <button class="btn btn-primary d-none" type="submit" id="btnInserimentoRicetta">Inserisci Ricetta</button>
             </div>
         </div>
-    </div>
+    </main>
 
-    <script src="js/script.js"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+    <script src="./js/script.js"></script>
 </body>
 
 </html>
