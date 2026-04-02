@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
+    <title>Velkina Cucina</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 </head>
@@ -40,6 +40,13 @@
                                 Inserisci Ricette
                             </button>
                         </li>
+                        <li class="nav-item">
+                            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
+                                data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar"
+                                aria-label="Toggle navigation" id="navMealPrep">
+                                Meal Prep
+                            </button>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -53,7 +60,7 @@
             <div class="d-grid col-md-3 mx-auto pt-4">
                 <label for="portataIndex" class="form-label">Portata</label>
                 <select class="form-select" aria-label="Default select example" id="portataIndex">
-                    <option selected value="">Seleziona la portata da vedere</option>
+                    <option selected value="" disabled>Seleziona la portata da vedere</option>
                     <option value="PRIMO PIATTO">Primo Piatto</option>
                     <option value="SECONDO PIATTO">Secondo Piatto</option>
                     <option value="PIATTO UNICO">Piatto Unico</option>
@@ -67,7 +74,7 @@
                 <button class="btn btn-primary" type="submit" id="btn">Vedi Ricette</button>
             </div>
             <div class="pt-4" id="containerTabella">
-                <div id="tabellaRicette"></div>
+                <div id="tabellaRicette" style="max-height: calc(100vh - 200px); overflow-y: auto"></div>
             </div>
         </div>
         <div class="d-none" id="inserisciRicette">
@@ -101,20 +108,152 @@
             <div class="d-grid col-md-2 mx-auto pt-4">
                 <button class="btn btn-primary disabled" type="submit" id="btnIngredienti">Aggiungi Ingredienti</button>
             </div>
-            <div class="pt-4" id="containerInputIngredienti">
+            <div class="pt-4" id="containerInputIngredienti" style="max-height: calc(100vh - 400px); overflow-y: auto">
                 <div id="inputIngredienti"></div>
             </div>
             <div class="d-grid col-md-2 mx-auto pt-4">
-                <button class="btn btn-primary d-none" type="submit" id="btnInserimentoRicetta">Inserisci Ricetta</button>
+                <button class="btn btn-primary d-none" type="submit" id="btnInserimentoRicetta">Inserisci
+                    Ricetta</button>
             </div>
         </div>
+        <div class="d-none" id="mealPrep">
+            <h1 class="text-center">Meal Prep</h1>
+            <div class="pt-4" id="containerMealPrep">
+                <div id="tabellaMealPrep">
+                    <table class="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th class="text-bg-dark p-3"></th>
+                                <th>pran</th>
+                                <th>Cena</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th>Lunedì</th>
+                                <th>
+                                    <select class="form-select settimana" aria-label="Default select example"
+                                        id="pran1L"></select>
+                                    <select class="form-select settimana" aria-label="Default select example"
+                                        id="pran2L"></select>
+                                </th>
+                                <th>
+                                    <select class="form-select settimana" aria-label="Default select example"
+                                        id="cena1L"></select>
+                                    <select class="form-select settimana" aria-label="Default select example"
+                                        id="cena2L"></select>
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>Martedì</th>
+                                <th>
+                                    <select class="form-select settimana" aria-label="Default select example"
+                                        id="pran1Ma"></select>
+                                    <select class="form-select settimana" aria-label="Default select example"
+                                        id="pran2Ma"></select>
+                                </th>
+                                <th>
+                                    <select class="form-select settimana" aria-label="Default select example"
+                                        id="cena1Ma"></select>
+                                    <select class="form-select settimana" aria-label="Default select example"
+                                        id="cena2Ma"></select>
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>Mercoledì</th>
+                                <th>
+                                    <select class="form-select settimana" aria-label="Default select example"
+                                        id="pran1Me"></select>
+                                    <select class="form-select settimana" aria-label="Default select example"
+                                        id="pran2Me"></select>
+                                </th>
+                                <th>
+                                    <select class="form-select settimana" aria-label="Default select example"
+                                        id="cena1Me"></select>
+                                    <select class="form-select settimana" aria-label="Default select example"
+                                        id="cena2Me"></select>
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>Giovedì</th>
+                                <th>
+                                    <select class="form-select settimana" aria-label="Default select example"
+                                        id="pran1G"></select>
+                                    <select class="form-select settimana" aria-label="Default select example"
+                                        id="pran2G"></select>
+                                </th>
+                                <th>
+                                    <select class="form-select settimana" aria-label="Default select example"
+                                        id="cena1G"></select>
+                                    <select class="form-select settimana" aria-label="Default select example"
+                                        id="cena2G"></select>
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>Venerdì</th>
+                                <th>
+                                    <select class="form-select settimana" aria-label="Default select example"
+                                        id="pran1V"></select>
+                                    <select class="form-select settimana" aria-label="Default select example"
+                                        id="pran2V"></select>
+                                </th>
+                                <th>
+                                    <select class="form-select settimana" aria-label="Default select example"
+                                        id="cena1V"></select>
+                                    <select class="form-select settimana" aria-label="Default select example"
+                                        id="cena2V"></select>
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>Sabato</th>
+                                <th>
+                                    <select class="form-select settimana" aria-label="Default select example"
+                                        id="pran1S"></select>
+                                    <select class="form-select settimana" aria-label="Default select example"
+                                        id="pran2S"></select>
+                                </th>
+                                <th>
+                                    <select class="form-select settimana" aria-label="Default select example"
+                                        id="cena1S"></select>
+                                    <select class="form-select settimana" aria-label="Default select example"
+                                        id="cena2S"></select>
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>Domenica</th>
+                                <th>
+                                    <select class="form-select settimana" aria-label="Default select example"
+                                        id="pran1D"></select>
+                                    <select class="form-select settimana" aria-label="Default select example"
+                                        id="pran2D"></select>
+                                </th>
+                                <th>
+                                    <select class="form-select settimana" aria-label="Default select example"
+                                        id="cena1D"></select>
+                                    <select class="form-select settimana" aria-label="Default select example"
+                                        id="cena2D"></select>
+                                </th>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="d-grid col-md-2 mx-auto pt-4">
+                <button class="btn btn-primary" type="submit" id="btnConfermaMealPrep">Conferma Meal Prep</button>
+            </div>
+            <!-- <div class="d-grid col-md-2 mx-auto pt-4">
+                <button class="btn btn-danger" type="submit" id="btnResettaMealPrep">Resetta Meal Prep</button>
+            </div> -->
+        </div>
     </main>
-
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
         crossorigin="anonymous"></script>
-    <script src="./js/script.js"></script>
+    <script src="./js/scriptVedi.js"></script>
+    <script src="./js/scriptInsert.js"></script>
+    <script src="./js/scriptMealPrep.js"></script>
+
 </body>
 
 </html>
