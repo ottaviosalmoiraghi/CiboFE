@@ -80,5 +80,6 @@ document.getElementById("navVediRicette").addEventListener("click", () => {
     document.getElementById("inserisciRicette").classList.add("d-none");
     document.getElementById("portataIndex").value = "";
     document.getElementById("mealPrep").classList.add("d-none");
+    document.getElementById("vediCalendario").classList.add("d-none");
 });
 

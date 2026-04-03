@@ -95,6 +95,7 @@ document.getElementById("navInserisciRicette").addEventListener("click", () => {
     document.getElementById("inserisciRicette").classList.remove("d-none");
     document.getElementById("vediRicette").classList.add("d-none");
     document.getElementById("mealPrep").classList.add("d-none");
+    document.getElementById("vediCalendario").classList.add("d-none");
 });
 
 document.getElementById("numeroIngredientiInput").addEventListener("input", () => {

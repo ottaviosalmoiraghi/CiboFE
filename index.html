@@ -47,6 +47,13 @@
                                 Meal Prep
                             </button>
                         </li>
+                        <li class="nav-item">
+                            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
+                                data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar"
+                                aria-label="Toggle navigation" id="navCalendario">
+                                Pasti Settimana
+                            </button>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -245,6 +252,59 @@
                 <button class="btn btn-danger" type="submit" id="btnResettaMealPrep">Resetta Meal Prep</button>
             </div> -->
         </div>
+        <div class="d-none" id="vediCalendario">
+            <h1 class="text-center">Pasti Della Settimana</h1>
+            <div class="pt-4" id="containerCalendario">
+                <div id="tabellaCalendario">
+                    <table class="table table-striped-columns">
+                        <thead>
+                            <tr>
+                                <th class="no-top-border"></th>
+                                <th>Pranzo</th>
+                                <th>Cena</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th>Lunedì</th>
+                                <th class="calendario" id="pranzolunedi"></th>
+                                <th class="calendario" id="cenalunedi"></th>
+                            </tr>
+                            <tr>
+                                <th>Martedì</th>
+                                <th class="calendario" id="pranzomartedi"></th>
+                                <th class="calendario" id="cenamartedi"></th>
+                            </tr>
+                            <tr>
+                                <th>Mercoledì</th>
+                                <th class="calendario" id="pranzomercoledi"></th>
+                                <th class="calendario" id="cenamercoledi"></th>
+                            </tr>
+                            <tr>
+                                <th>Giovedì</th>
+                                <th class="calendario" id="pranzogiovedi"></th>
+                                <th class="calendario" id="cenagiovedi"></th>
+                            </tr>
+                            <tr>
+                                <th>Venerdì</th>
+                                <th class="calendario" id="pranzovenerdi"></th>
+                                <th class="calendario" id="cenavenerdi"></th>
+                            </tr>
+                            <tr>
+                                <th>Sabato</th>
+                                <th class="calendario" id="pranzosabato"></th>
+                                <th class="calendario" id="cenasabato"></th>
+                            </tr>
+                            <tr>
+                                <th>Domenica</th>
+                                <th class="calendario" id="pranzodomenica"></th>
+                                <th class="calendario" id="cenadomenica"></th>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
@@ -253,6 +313,7 @@
     <script src="./js/scriptVedi.js"></script>
     <script src="./js/scriptInsert.js"></script>
     <script src="./js/scriptMealPrep.js"></script>
+    <script src="./js/scriptCalendario.js"></script>
 
 </body>
 

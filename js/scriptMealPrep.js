@@ -5,6 +5,7 @@ document.getElementById("navMealPrep").addEventListener("click", async () => {
     document.getElementById("portataIndex").value = "";
     document.getElementById("vediRicette").classList.add("d-none");
     document.getElementById("mealPrep").classList.remove("d-none");
+    document.getElementById("vediCalendario").classList.add("d-none");
 
     try {
         const response = await fetch('https://cibobe.onrender.com/api/read');
@@ -61,7 +62,7 @@ document.getElementById("btnConfermaMealPrep").addEventListener("click", async (
                 case "cena":
                     pasto="CENA";
                     break;
-                deafult:
+                default:
                     pasto="";
             }
             let giorno = p.id.substring(5);
