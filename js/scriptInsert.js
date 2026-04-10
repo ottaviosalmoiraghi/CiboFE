@@ -1,3 +1,5 @@
+import { chiamataBE } from './BFFE.js';
+
 document.getElementById("btnIngredienti").addEventListener("click", () => {
 
     const numeroIngredienti = document.getElementById("numeroIngredientiInput").value;
@@ -63,24 +65,10 @@ document.getElementById("btnInserimentoRicetta").addEventListener("click", async
         ingredienti: ingredientiFinali,
     };
 
-    try {
-        const response = await fetch("https://cibobe.onrender.com/api/insert", {
-            method: "POST",
-            headers: {
-                "Content-type": "application/json",
-            },
-            body: JSON.stringify(dati),
-        })
-        if (!response.ok) {
-            throw new Error("Errore nella chiamata POST");
-        }
-        const data = await response.json();
-        console.log(data);
-        alert("Ricetta inserita con successo!");
-    } catch (error) {
-        console.error("Errore:", error);
-        alert("Errore durante l'invio dei dati");
-    }
+    const url = "/insert";
+    const data = await chiamataBE(url, "POST", dati);
+    console.log(data);
+    alert("Ricetta inserita con successo!");
 
     for (i = 1; i <= 10; i++) {
         document.getElementById(`ingrediente${i}`).value = "";
