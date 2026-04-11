@@ -5,7 +5,7 @@ document.getElementById("btnIngredienti").addEventListener("click", () => {
     const numeroIngredienti = document.getElementById("numeroIngredientiInput").value;
     let inputIngredienti = document.getElementById("inputIngredienti");
     inputIngredienti.innerHTML = "";
-    for (i = 1; i <= numeroIngredienti; i++) {
+    for (let i = 1; i <= numeroIngredienti; i++) {
         const label = document.createElement("label");
         label.for = `ingrediente${i}`;
         label.innerText = `Ingrediente ${i}`
@@ -38,7 +38,7 @@ document.getElementById("btnInserimentoRicetta").addEventListener("click", async
     const ingredienti = [];
     nomeRicetta.classList.remove("bg-danger-subtle");
     portataEle.classList.remove("bg-danger-subtle");
-    for (i = 1; i <= numeroIngredienti; i++) {
+    for (let i = 1; i <= numeroIngredienti; i++) {
         ingredienti.push({
             ingrediente: document.getElementById(`ingrediente${i}`).value,
             quantita4: document.getElementById(`quantita${i}`).value,
@@ -70,7 +70,7 @@ document.getElementById("btnInserimentoRicetta").addEventListener("click", async
     console.log(data);
     alert("Ricetta inserita con successo!");
 
-    for (i = 1; i <= 10; i++) {
+    for (let i = 1; i <= numeroIngredienti; i++) {
         document.getElementById(`ingrediente${i}`).value = "";
         document.getElementById(`quantita${i}`).value = "";
     }
