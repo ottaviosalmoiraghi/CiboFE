@@ -1,4 +1,5 @@
 import { chiamataBE } from './BFFE.js';
+import { navElements } from './BFFE.js';
 
 document.getElementById("btn").addEventListener("click", async () => {
     const port = document.getElementById("portataIndex");
@@ -66,11 +67,6 @@ document.getElementById("btn").addEventListener("click", async () => {
 
 
 document.getElementById("navVediRicette").addEventListener("click", () => {
-    document.getElementById("vediRicette").classList.remove("d-none");
-    document.getElementById("containerTabella").classList.add("d-none");
-    document.getElementById("inserisciRicette").classList.add("d-none");
-    document.getElementById("portataIndex").value = "";
-    document.getElementById("mealPrep").classList.add("d-none");
-    document.getElementById("vediCalendario").classList.add("d-none");
+    navElements("vediRicette");
 });
 

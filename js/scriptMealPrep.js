@@ -1,13 +1,9 @@
 import { chiamataBE } from './BFFE.js';
+import { navElements } from './BFFE.js';
 
 document.getElementById("navMealPrep").addEventListener("click", async () => {
 
-    document.getElementById("containerTabella").classList.add("d-none");
-    document.getElementById("inserisciRicette").classList.add("d-none");
-    document.getElementById("portataIndex").value = "";
-    document.getElementById("vediRicette").classList.add("d-none");
-    document.getElementById("mealPrep").classList.remove("d-none");
-    document.getElementById("vediCalendario").classList.add("d-none");
+    navElements("mealPrep");
 
     const url = "/read"
     const data = await chiamataBE(url, "GET", null);
@@ -92,6 +88,56 @@ document.getElementById("btnConfermaMealPrep").addEventListener("click", async (
     if (dataUpdate === undefined) {
         alert("Meal Prep non inserito");
     } else {
-        alert("Prep Meal inserito correttamente!");
+        alert("Meal Prep inserito correttamente!");
+        document.getElementById("mealPrep").classList.add("d-none");
+        document.getElementById("vediMakeLista").classList.remove("d-none");
+    }
+    navElements("vediMakeLista");
+    const url = "/getIngredienti";
+    const data = await chiamataBE(url, "GET", null);
+    const ul = document.getElementById("ulIngredienti");
+    data.forEach(ingr => {
+        const li = document.createElement("li");
+        li.classList.add("list-group-item");
+        if (ingr.ingrediente === 'UOVA') ingr.ingrediente = ingr.quantita + " " + ingr.ingrediente;
+        li.innerText = (ingr.ingrediente);
+        ul.appendChild(li);
+    });
+})
+
+document.getElementById("vediMakeLista").addEventListener("click", (event) => {
+    const item = event.target.closest(".list-group-item");
+    if (!item || item.classList.contains("text-bg-primary")) return;
+    const parent = item.parentElement;
+    if (parent.id === "ulIngredienti") {
+        const lista = document.getElementById("ulPresenti");
+        lista.appendChild(item);
+    } else if (parent.id === "ulPresenti") {
+        const lista = document.getElementById("ulIngredienti");
+        lista.appendChild(item);
+    }
+});
+
+document.getElementById("btnConfermaLista").addEventListener("click", async () => {
+    const urlDelete = "/deleteLista";
+    const url = "/salvaLista";
+    const ul = document.getElementById("ulIngredienti");
+    const lista = Array.from(ul.children);
+    const filtrata = lista.filter(li =>
+        !li.classList.contains("text-bg-primary")
+    );
+    let request = [];
+    filtrata.forEach(filtr => {
+        request.push({
+            elementoLista: filtr.innerText
+        });
+    });
+    const dataDeleted = await chiamataBE(urlDelete,"POST", null);
+    const data = await chiamataBE(url,"POST", request);
+    if (data === undefined) {
+        alert("Lista non inserita");
+    } else {
+        alert("Lista inserita correttamente!");
+        // navElements("");
     }
 })

@@ -1,13 +1,8 @@
 import { chiamataBE } from './BFFE.js';
+import { navElements } from './BFFE.js';
 
 document.getElementById("navCalendario").addEventListener("click", async () => {
-    document.getElementById("vediCalendario").classList.remove("d-none");
-    document.getElementById("vediRicette").classList.add("d-none");
-    document.getElementById("containerTabella").classList.add("d-none");
-    document.getElementById("inserisciRicette").classList.add("d-none");
-    document.getElementById("portataIndex").value = "";
-    document.getElementById("mealPrep").classList.add("d-none");
-
+    navElements("vediCalendario");
     const tabella = document.querySelectorAll(".calendario");
     tabella.forEach(t => {
         t.innerText = "";

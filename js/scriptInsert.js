@@ -1,4 +1,5 @@
 import { chiamataBE } from './BFFE.js';
+import { navElements } from './BFFE.js';
 
 document.getElementById("btnIngredienti").addEventListener("click", () => {
 
@@ -25,7 +26,17 @@ document.getElementById("btnIngredienti").addEventListener("click", () => {
         inputIngredienti.appendChild(quantita);
     }
 
-    document.getElementById("btnInserimentoRicetta").classList.remove("d-none");
+    const bottoneRicetta = document.getElementById("btnInserimentoRicetta")
+    const container = document.getElementById("containerInputIngredienti");
+    if(numeroIngredienti == 0) {
+        container.classList.remove("border");
+        bottoneRicetta.classList.add("d-none");
+
+    }
+    else {
+        container.classList.add("border");
+        bottoneRicetta.classList.remove("d-none");
+    }
 
 })
 
@@ -80,10 +91,7 @@ document.getElementById("btnInserimentoRicetta").addEventListener("click", async
 });
 
 document.getElementById("navInserisciRicette").addEventListener("click", () => {
-    document.getElementById("inserisciRicette").classList.remove("d-none");
-    document.getElementById("vediRicette").classList.add("d-none");
-    document.getElementById("mealPrep").classList.add("d-none");
-    document.getElementById("vediCalendario").classList.add("d-none");
+    navElements("inserisciRicette");
 });
 
 document.getElementById("numeroIngredientiInput").addEventListener("input", () => {
